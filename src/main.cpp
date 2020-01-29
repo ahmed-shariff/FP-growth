@@ -9,13 +9,13 @@
 
 void test_1()
 {
-    const Item a{ "A" };
-    const Item b{ "B" };
-    const Item c{ "C" };
-    const Item d{ "D" };
-    const Item e{ "E" };
+    const std::string a{ "A" };
+    const std::string b{ "B" };
+    const std::string c{ "C" };
+    const std::string d{ "D" };
+    const std::string e{ "E" };
 
-    const std::vector<Transaction> transactions{
+    const std::vector<Transaction<std::string>> transactions{
         { a, b },
         { b, c, d },
         { a, c, d, e },
@@ -30,9 +30,9 @@ void test_1()
 
     const uint64_t minimum_support_threshold = 2;
 
-    const FPTree fptree{ transactions, minimum_support_threshold };
+    const FPTree<std::string> fptree{ transactions, minimum_support_threshold };
 
-    const std::set<Pattern> patterns = fptree_growth( fptree );
+    const std::set<Pattern<std::string>> patterns = fptree_growth( fptree );
 
     assert( patterns.size() == 19 );
     assert( patterns.count( { { a }, 8 } ) );
@@ -58,13 +58,13 @@ void test_1()
 
 void test_2()
 {
-    const Item a{ "A" };
-    const Item b{ "B" };
-    const Item c{ "C" };
-    const Item d{ "D" };
-    const Item e{ "E" };
+    const std::string a{ "A" };
+    const std::string b{ "B" };
+    const std::string c{ "C" };
+    const std::string d{ "D" };
+    const std::string e{ "E" };
 
-    const std::vector<Transaction> transactions{
+    const std::vector<Transaction<std::string>> transactions{
         { a, b, d, e },
         { b, c, e },
         { a, b, d, e },
@@ -75,9 +75,9 @@ void test_2()
 
     const uint64_t minimum_support_threshold = 3;
 
-    const FPTree fptree{ transactions, minimum_support_threshold };
+    const FPTree<std::string> fptree{ transactions, minimum_support_threshold };
 
-    const std::set<Pattern> patterns = fptree_growth( fptree );
+    const std::set<Pattern<std::string>> patterns = fptree_growth( fptree );
 
     assert( patterns.size() == 19 );
     assert( patterns.count( { { e, b }, 5 } ) );
@@ -103,25 +103,25 @@ void test_2()
 
 void test_3()
 {
-    const Item a{ "A" };
-    const Item b{ "B" };
-    const Item c{ "C" };
-    const Item d{ "D" };
-    const Item e{ "E" };
-    const Item f{ "F" };
-    const Item g{ "G" };
-    const Item h{ "H" };
-    const Item i{ "I" };
-    const Item j{ "J" };
-    const Item k{ "K" };
-    const Item l{ "L" };
-    const Item m{ "M" };
-    const Item n{ "N" };
-    const Item o{ "O" };
-    const Item p{ "P" };
-    const Item s{ "S" };
+    const std::string a{ "A" };
+    const std::string b{ "B" };
+    const std::string c{ "C" };
+    const std::string d{ "D" };
+    const std::string e{ "E" };
+    const std::string f{ "F" };
+    const std::string g{ "G" };
+    const std::string h{ "H" };
+    const std::string i{ "I" };
+    const std::string j{ "J" };
+    const std::string k{ "K" };
+    const std::string l{ "L" };
+    const std::string m{ "M" };
+    const std::string n{ "N" };
+    const std::string o{ "O" };
+    const std::string p{ "P" };
+    const std::string s{ "S" };
 
-    const std::vector<Transaction> transactions{
+    const std::vector<Transaction<std::string>> transactions{
         { f, a, c, d, g, i, m, p },
         { a, b, c, f, l, m, o },
         { b, f, h, j, o },
@@ -131,9 +131,9 @@ void test_3()
 
     const uint64_t minimum_support_threshold = 3;
 
-    const FPTree fptree{ transactions, minimum_support_threshold };
+    const FPTree<std::string> fptree{ transactions, minimum_support_threshold };
 
-    const std::set<Pattern> patterns = fptree_growth( fptree );
+    const std::set<Pattern<std::string>> patterns = fptree_growth( fptree );
 
     assert( patterns.size() == 18 );
     assert( patterns.count( { { f }, 4 } ) );
