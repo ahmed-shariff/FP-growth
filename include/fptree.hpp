@@ -9,6 +9,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <cassert>
 
 #define ForAll(T)       template <typename T>
 
